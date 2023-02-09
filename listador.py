@@ -27,12 +27,14 @@ def avaliar(cod, galera):
         if str(new_cod[i]) != '0' and str(new_cod[i]) != str(cod[i]):
             
             match = f_match(galera[i]['ID'])
-            print(match)
-            if match['game_mode'] == "1" or match['game_mode'] == "2" or match['game_mode'] == "22":
+            print(f"{galera[i]['Nick']} acabou de terminar uma partida!\nTeremos lista?" )
+            if str(match['game_mode']) == "1" or str(match['game_mode']) == "2" or str(match['game_mode']) == "22":
                 cod[i] = new_cod[i]
                 if int(match['deaths']) - int(match['kills']) >= 10:
                     print('é listaaaa')
                     f_email(galera[i],match)
+            else:
+                print("Infelizmente não foi dessa vez...")
     return cod
 
 
@@ -58,7 +60,12 @@ def f_email(artista,match):
         Você foi devidamente listado pelo seu desempenho brilhante na partida!\n\n
         Aqui está sua obra jogando de {heroi[str(match['hero_id'])]['localized_name']}:\n
         \tKills: {match['kills']}\n
-        \tMortes: {match['deaths']}"""
+        \tMortes: {match['deaths']}\n
+        \tAssists: {match['assists']}\n
+        \tDuração: {match['duration']/60} minutos\n
+        \tDano: {match['hero_damage']}\n\n
+        \t\tCaso acredita que essa lista é injusta, primeiramente foda-se,\n
+        \t\tsegundamete, você tem direito de até 2 audiências por semestre"""
 
 
     msg = MIMEText(body.encode('utf-8'), 'plain', 'utf-8')
