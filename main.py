@@ -9,8 +9,10 @@ manda pro listador.py'''
 galera = []
 galera = [*csv.DictReader(open('nomes.csv', encoding='utf-8'))]
 cod = listador.licodificador(galera)
-print(cod)
+i = 50
 while True:
+    if i/50 == 1:
+        print("Ainda estou vivo")
+        i = 50
     cod = listador.avaliar(cod,galera)
-    print(cod)
     time.sleep(10)
