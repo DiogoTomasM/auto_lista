@@ -5,7 +5,6 @@ import json
 from email.mime.text import MIMEText
 #conferir game_mode 1,2 ou 22
 
-
 def licodificador(galera):
     codiguin = []
     for i in galera:
@@ -53,6 +52,11 @@ def f_email(artista,match):
     user = cred[0]['login']
     password = cred[0]['senha']
     sent_from = user
+    
+    copia = []
+    for j in cred:
+        copia.appendj['e-mail']
+
     to = f"{artista['e-mail']}"
     subject = f"""Parabéns {artista['Nick']}! É Listaaaaa!!"""
     body = f"""\
@@ -71,6 +75,7 @@ def f_email(artista,match):
     msg = MIMEText(body.encode('utf-8'), 'plain', 'utf-8')
     msg['Subject'] = subject
     msg['From'] = sent_from
+    msg['Cc'] = copia
     msg['To'] = to
 
     with smtplib.SMTP('smtp-mail.outlook.com', 587) as server:
